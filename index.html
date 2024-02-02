@@ -42,7 +42,7 @@
     </style></head><body><h1>Ticket Distribution</h1><ul id="name-list"></ul><button id="next-name-btn">Next ticket will be assigned to</button><script>
       const names = ["ANISH", "DEEPAK", "HARSHIT", "KAPIL", "NIKITA", "RAMAN", "SARTHAK", "SHASHWAT", "TANYA"];
       const nameList = document.getElementById("name-list");
-      let i = 0;
+      let i = localStorage.getItem("currentIndex") || 0;
       const nextNameBtn = document.getElementById("next-name-btn");
       nextNameBtn.addEventListener("click", () => {
         if (i >= names.length) {
@@ -50,5 +50,9 @@
         }
         nameList.innerHTML = `<li>${names[i]}</li>`;
         i++;
+        localStorage.setItem("currentIndex", i);
+      });
+      window.addEventListener("load", () => {
+        nameList.innerHTML = `<li>${names[i]}</li>`;
       });
     </script></body></html>
